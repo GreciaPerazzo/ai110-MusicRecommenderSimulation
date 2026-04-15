@@ -50,9 +50,9 @@ Bias arises from fixed weights that may favor high-energy or high-valence songs,
 
 ## 7. Evaluation
 
-Evaluation involved testing with a sample user profile (pop genre, happy mood, 0.8 energy/valence, 120 BPM tempo, 0.8 danceability) on the full dataset. Top recommendations were checked for relevance—e.g., pop/happy songs scored highest, as expected.
+Evaluation tested four distinct user profiles on the expanded 18-song dataset: High-Energy Pop (pop/happy, high energy/valence), Chill Lofi (lofi/chill, low energy), Deep Intense Rock (rock/intense, high energy/low valence), and a Conflicted adversarial profile (pop/sad, high energy/low valence). Top 5 recommendations were analyzed for relevance, scores, and reasons.
 
-Surprisingly, some non-matching songs still scored decently due to numeric closeness, highlighting the need for better genre/mood weighting. Basic unit tests verified scoring and ranking logic, but no advanced metrics were used due to the simple setup.
+Results showed strong alignment for matching profiles (e.g., High-Energy Pop favored pop tracks with bonuses), but the Conflicted profile revealed biases, prioritizing pop genre despite mood mismatches. Surprisingly, numeric closeness allowed non-genre matches to rank highly (e.g., high-energy hip-hop for pop users), and the weight experiment (doubling energy, halving genre bonus) boosted energy-dominant songs, shifting rankings and increasing diversity but reducing genre loyalty. Basic unit tests confirmed scoring accuracy, though no advanced metrics were used.
 
 ---
 

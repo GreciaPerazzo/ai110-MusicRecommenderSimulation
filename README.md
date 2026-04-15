@@ -82,8 +82,16 @@ You can add more tests in `tests/test_recommender.py`.
 - **User Profile Variations**: Experimented with a "chill" user (lofi genre, chill mood, low energy 0.4), resulting in top recommendations like "Library Rain" and "Focus Flow", confirming the system's ability to adapt to different vibes.
 - **Feature Inclusion**: Added tempo normalization (capping diff at 120 BPM), which improved ranking for songs with moderate tempo differences, as seen in the pop user test where "Sunrise City" (118 BPM) scored higher than faster tracks.
 - **Dataset Size Impact**: Ran the same pop/happy user on subsets of 5 songs vs. full 10, noting that smaller catalogs led to less diverse but more precise matches, highlighting scalability issues.
-![alt text](image.png)
 
+### Phase 4 Evaluation - Multiple User Profiles
+- **High-Energy Pop user**: Top song was Sunrise City (8.29), with genre/mood bonuses dominating the ranking.
+- **Chill Lofi user**: Library Rain and Midnight Coding topped the list with perfect matches on genre, mood, and low energy.
+- **Deep Intense Rock user**: Storm Runner scored 8.61 with full bonuses for rock/intense preferences.
+- **Conflicted adversarial user**: Gym Hero still ranked high due to the genre bonus despite mood mismatch, revealing potential bias toward categorical matches.
+- **Weight experiment**: Doubling the energy weight and halving the genre bonus increased diversity in recommendations but made rankings more energy-dominant, favoring high-intensity tracks.
+
+![alt text](image.png)
+![alt text](image-1.png)
 ---
 
 

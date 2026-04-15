@@ -33,31 +33,57 @@ def main() -> None:
     # Load songs from CSV
     songs = load_songs('data/songs.csv')
     
-    # Create a sample user profile
-    user = UserProfile(
-        preferred_genre="pop",
-        preferred_mood="happy",
-        preferred_energy=0.8,
-        preferred_valence=0.8,
-        preferred_tempo=120.0,
-        preferred_danceability=0.8
-    )
-    
     # Create recommender
     rec = Recommender(songs)
     
-    # Get top 3 recommendations with scores and reasons
-    recommendations = rec.recommend(user, 3)
+    # Define user profiles
+    profiles = [
+        ("High-Energy Pop", UserProfile(
+            preferred_genre="pop",
+            preferred_mood="happy",
+            preferred_energy=0.9,
+            preferred_valence=0.85,
+            preferred_tempo=130.0,
+            preferred_danceability=0.9
+        )),
+        ("Chill Lofi", UserProfile(
+            preferred_genre="lofi",
+            preferred_mood="chill",
+            preferred_energy=0.35,
+            preferred_valence=0.58,
+            preferred_tempo=75.0,
+            preferred_danceability=0.6
+        )),
+        ("Deep Intense Rock", UserProfile(
+            preferred_genre="rock",
+            preferred_mood="intense",
+            preferred_energy=0.92,
+            preferred_valence=0.45,
+            preferred_tempo=150.0,
+            preferred_danceability=0.65
+        )),
+        ("Conflicted", UserProfile(
+            preferred_genre="pop",
+            preferred_mood="sad",
+            preferred_energy=0.9,
+            preferred_valence=0.2,
+            preferred_tempo=120.0,
+            preferred_danceability=0.8
+        )),
+    ]
     
-    # Print top 3 recommendations with scores
-    print("Top 3 Recommended Songs:")
-    print("-" * 50)
-    for i, (song, score, reasons) in enumerate(recommendations, 1):
-        print(f"{i}. {song.title}")
-        print(f"   By: {song.artist}")
-        print(f"   Score: {score:.2f}")
-        print(f"   Reasons: {', '.join(reasons)}")
-        print()
+    # Run recommender for each profile
+    for profile_name, user in profiles:
+        recommendations = rec.recommend(user, 5)
+        
+        print(f"\n=== {profile_name} Profile ===")
+        print("-" * 50)
+        for i, (song, score, reasons) in enumerate(recommendations, 1):
+            print(f"{i}. {song.title}")
+            print(f"   By: {song.artist}")
+            print(f"   Score: {score:.2f}")
+            print(f"   Reasons: {', '.join(reasons)}")
+            print()
 
 if __name__ == "__main__":
     main()
