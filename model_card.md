@@ -46,6 +46,8 @@ The system can create filter bubbles by reinforcing initial preferences, potenti
 
 Bias arises from fixed weights that may favor high-energy or high-valence songs, and the small dataset lacks balance—more pop/happy songs could skew results. It assumes users have precise numeric preferences, which may not reflect real tastes, and ignores factors like lyrics, artist popularity, or context (e.g., time of day).
 
+Testing revealed that the +2.0 genre bonus creates strong filter bubbles, prioritizing exact genre matches over mood or energy alignment, as seen in users getting stuck in pop recommendations. The 2x energy weight introduces bias toward high-intensity tracks, disadvantaging users who prefer calm music and potentially over-representing energetic genres. The conflicted adversarial profile demonstrated that genre matching can override mood conflicts, with pop songs ranking highly despite mismatched sad moods, highlighting the dominance of categorical bonuses over nuanced preferences.
+
 ---
 
 ## 7. Evaluation
