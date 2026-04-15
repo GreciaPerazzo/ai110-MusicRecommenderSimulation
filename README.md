@@ -36,7 +36,26 @@ This music recommendation system operates under the framework of collaborative f
 **Scoring Method:** Categorical attribute weightings + proximity-based numerical scoring. 
 **Ranking Method:** Sort songs by total score, returning only the best N song results. 
 
-## Getting Started
+### Algorithm Recipe
+- **Genre Match Bonus:** +2.0 points if song genre exactly matches user preferred genre
+- **Mood Match Bonus:** +1.0 point if song mood exactly matches user preferred mood  
+- **Numeric Similarity Points:** For energy, valence, danceability: 1 - |song_value - user_preference| (scaled 0-1)
+- **Tempo Similarity Points:** 1 - min(|song_tempo - user_tempo| / 120, 1) (normalized for BPM range)
+- **Total Score:** Weighted sum (2x energy + 1.5x valence + 1.2x danceability + 1x tempo) + genre bonus + mood bonus
+
+### System Flowchart
+```mermaid
+graph TD
+    A[Input: User Preferences] --> B[Load Songs from CSV]
+    B --> C[Loop through each song]
+    C --> D[Calculate score: numeric closeness + genre/mood bonus]
+    D --> E[Collect all scores]
+    E --> F[Sort by score descending]
+    F --> G[Output: Top K recommendations]
+```
+
+### Potential Bias Note
+The system might over-prioritize genre matches due to the +2.0 bonus, creating filter bubbles that favor songs like happy pop tracks even if other genres (e.g., chill lofi with matching mood) score highly on numeric features but lack the genre bonus.
 
 ### Setup
 
