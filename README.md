@@ -13,7 +13,7 @@ Your goal is to:
 
 Replace this paragraph with your own summary of what your version does.
 
----
+A content-based music recommender system is simulated to recommend songs based on how well they match a user's taste profile. Music is scored by how close the attributes are to matching the user's profile, and then the system outputs a list of songs in order of their score.
 
 ## How The System Works
 
@@ -29,7 +29,12 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
----
+This music recommendation system operates under the framework of collaborative filtering through use of attributes of songs to determine how similar they are to an individual user's taste profile. Each song receives a "score" based on how closely its attributes (e.g., genre, mood, energy, valence, tempo, danceability) match up to that user's preferences. For categorical attributes (e.g., genre, mood), users receive extra points for being an exact match; for numerical attributes (e.g., energy, valence), the user receives points based on their song preference being in proximity to the user's preference; i.e., the closer the song's value is to that of the user's preference for a particular attribute, the closer it is to receiving maximum scoring. The total scores for all songs are compiled and ranked with higher ranked songs having higher total scores. Then, a specified number of songs are given to the user based on their scores and ultimately provided to them as recommended songs.
+
+**Song attributes:** Song title, artist, genre, mood, energy, tempo_bpm, valence, danceability, acousticness. 
+**UserProfile attributes:** Preferred genre, mood, preferred energy, preferred valence, preferred tempo, preferred danceability. 
+**Scoring Method:** Categorical attribute weightings + proximity-based numerical scoring. 
+**Ranking Method:** Sort songs by total score, returning only the best N song results. 
 
 ## Getting Started
 
@@ -68,31 +73,28 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
-
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+- **Weight Adjustments**: Tested changing the energy weight from 2.0 to 1.0, which reduced the dominance of high-energy songs like "Gym Hero" in recommendations, allowing more balanced matches on other features.
+- **User Profile Variations**: Experimented with a "chill" user (lofi genre, chill mood, low energy 0.4), resulting in top recommendations like "Library Rain" and "Focus Flow", confirming the system's ability to adapt to different vibes.
+- **Feature Inclusion**: Added tempo normalization (capping diff at 120 BPM), which improved ranking for songs with moderate tempo differences, as seen in the pop user test where "Sunrise City" (118 BPM) scored higher than faster tracks.
+- **Dataset Size Impact**: Ran the same pop/happy user on subsets of 5 songs vs. full 10, noting that smaller catalogs led to less diverse but more precise matches, highlighting scalability issues.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
-
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
+- **Small Dataset**: With only 10 songs, the system lacks diversity, potentially leading to repetitive recommendations and inability to handle varied user tastes.
+- **Filter Bubbles**: The scoring heavily favors exact genre/mood matches, risking users getting stuck in echo chambers (e.g., always pop/happy songs for pop fans), limiting exposure to new genres.
+- **Bias Toward Numeric Features**: High weights on energy/valence can over-prioritize intense or upbeat tracks, underrepresenting calm or melancholic music, and ignoring qualitative aspects like lyrics or cultural context.
+- **Cold Start Problems**: New songs or users without established preferences aren't handled, as the system relies solely on content features without collaborative data.
+- **Evaluation Gaps**: Manual testing with sample profiles may miss edge cases, and the lack of real user feedback means biases (e.g., toward popular genres) aren't detected.
 
 ---
 
 ## Reflection
 
-Read and complete `model_card.md`:
+Building VibeFinder 1.0 revealed the trade-offs between simplicity and effectiveness in recommendation systems. The content-based approach excelled at matching "vibes" through weighted features, as evidenced by intuitive top recommendations for the pop/happy user (e.g., "Sunrise City" for its close energy/valence match). However, it underscored real-world challenges like filter bubbles and data limitations, mirroring issues in platforms like Spotify.
+
+Key lessons: Scoring rules need balance to avoid over-favoring certain attributes, and hybrid methods (content + collaborative) are essential for diversity. Future iterations should incorporate user feedback loops and larger datasets to mitigate biases. This project demonstrated how even basic AI can create engaging experiences while highlighting ethical considerations in personalization. For deeper analysis, see `model_card.md`.
 
 [**Model Card**](model_card.md)
 
