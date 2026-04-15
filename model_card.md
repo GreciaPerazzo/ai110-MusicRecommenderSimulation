@@ -4,25 +4,25 @@
 VibeFinder 1.0
 
 ## 2. Goal/Task
-Suggests songs that match a user's musical preferences based on genre, mood, and audio features.
+Suggest songs matching user vibe preferences.
 
 ## 3. Data Used
-Uses 18 songs from a CSV file. Features include title, artist, genre, mood, energy, tempo, valence, danceability, acousticness. Limited by small size and synthetic data.
+18 songs with features like genre, mood, energy, valence, tempo, danceability. Limited by small size and synthetic nature.
 
 ## 4. Algorithm Summary
-Scores songs by closeness to user preferences. Gives points for numeric matches and bonuses for exact genre and mood matches. Weights energy more heavily.
+Scores songs based on how well their attributes match user preferences, using closeness for numbers and bonuses for exact matches.
 
 ## 5. Observed Behavior/Biases
-Prioritizes genre matches, creating filter bubbles. Favors high-energy songs due to weights.
+Filter bubbles from genre dominance, energy bias favoring high-energy tracks, and conflicted profile showing genre overrides mood.
 
 ## 6. Evaluation Process
-Tested with four user profiles. Ran weight experiments. Compared recommendations across profiles.
+4 profiles tested, weight experiment conducted, unit tests run.
 
 ## 7. Intended Use and Non-Intended Use
-Designed for educational demonstration of content-based recommendations. Should not be used for real music streaming or commercial applications.
+Educational only. Not for real products or users.
 
 ## 8. Ideas for Improvement
-Add collaborative filtering. Expand dataset. Implement user feedback for adaptive weights.
+Hybrid filtering, diversity controls, larger dataset.
 
 ## Personal Reflection
-The biggest learning moment was realizing how easily biases like filter bubbles emerge from simple scoring rules, showing the ethical challenges in real recommendation systems. AI tools helped generate code snippets and explain concepts quickly, but I had to double-check the scoring logic and test outputs manually to ensure accuracy. I was surprised that even basic weighted averages and bonuses could produce recommendations that felt intuitive and personalized, mimicking how platforms like Spotify work. If extending this project, I'd try integrating user feedback loops to adjust weights dynamically and explore hybrid models combining content and collaborative data for better diversity.  
+The biggest learning was how biases emerge from simple rules. AI tools helped with coding and explanations, but logic needed manual checks. I was surprised simple algorithms can feel like real recommendations. Next, I'd add user feedback for adaptive scoring.  
