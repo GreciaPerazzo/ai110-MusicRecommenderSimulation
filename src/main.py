@@ -46,14 +46,18 @@ def main() -> None:
     # Create recommender
     rec = Recommender(songs)
     
-    # Get scored songs
-    scored_songs = [(song, rec.score_song(song, user)) for song in songs]
-    scored_songs.sort(key=lambda x: x[1], reverse=True)
+    # Get top 3 recommendations with scores and reasons
+    recommendations = rec.recommend(user, 3)
     
     # Print top 3 recommendations with scores
     print("Top 3 Recommended Songs:")
-    for i, (song, score) in enumerate(scored_songs[:3], 1):
-        print(f"{i}. {song.title} by {song.artist} - Score: {score:.2f}")
+    print("-" * 50)
+    for i, (song, score, reasons) in enumerate(recommendations, 1):
+        print(f"{i}. {song.title}")
+        print(f"   By: {song.artist}")
+        print(f"   Score: {score:.2f}")
+        print(f"   Reasons: {', '.join(reasons)}")
+        print()
 
 if __name__ == "__main__":
     main()
