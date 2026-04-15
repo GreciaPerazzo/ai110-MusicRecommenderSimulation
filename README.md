@@ -11,8 +11,6 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-Replace this paragraph with your own summary of what your version does.
-
 A content-based music recommender system is simulated to recommend songs based on how well they match a user's taste profile. Music is scored by how close the attributes are to matching the user's profile, and then the system outputs a list of songs in order of their score.
 
 ## How The System Works

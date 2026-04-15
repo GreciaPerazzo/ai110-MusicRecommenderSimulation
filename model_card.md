@@ -66,10 +66,4 @@ Better explanations (e.g., "Recommended because of high energy match") and adapt
 
 ## 9. Personal Reflection  
 
-A few sentences about your experience.  
-
-Prompts:  
-
-- What you learned about recommender systems  
-- Something unexpected or interesting you discovered  
-- How this changed the way you think about music recommendation apps  
+Building VibeFinder 1.0 taught me that recommenders turn data into predictions by quantifying similarity between user preferences and item attributes, using weighted scores to rank options and surface the best matches. Surprisingly, the scoring system revealed that even songs from mismatched genres could rank highly if their numeric features (like energy or tempo) were close, underscoring the need for balanced weighting to avoid unintended biases. This experience shifted my perspective on apps like Spotify, showing how seemingly simple recommendations involve complex trade-offs between personalization, diversity, and ethical considerations to prevent filter bubbles and ensure fair discovery.  
